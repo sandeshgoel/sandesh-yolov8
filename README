@@ -1,0 +1,63 @@
+SETUP
+-----
+pip install -r requirements.txt
+
+
+USAGE
+-----
+[video_capture.py]
+Step 0: Capture the video feed and store to file
+
+        python video_capture.py
+
+        The parameters can be adjusted in the main() function within the python script.
+        By default, it runs continuously and generates files with 1 second worth of video 
+        ffed. It creates the output directory if it does not already exist.
+
+[define_regions.py]
+Step 1: Define the regions of interest
+
+        python define_regions.py -c <camera_id> -f <video_file.mp4>
+        
+        Define the "region of interest" using mouse clicks
+        The newly defined region is stored in a file called "regions/region-<camera_id>"
+        This region can be used in the subsequent step
+
+[track_regions.py]
+Step 2: Run the object detection
+
+        python track_regions -c <camera_id> -f <video_file.mp4> -m <model_file>
+        Model file is called yolov8s-pt-20.pt, and can be downloaded from one drive below:
+        https://ramennetworks1-my.sharepoint.com/:f:/g/personal/sandesh_goel_rameninc_com/EnihWw5SKVpEubo8zDobDoUB7wcOnD2bva4vYqDYbJnmTQ?e=05MR3O
+
+        Running count of orange bags detected within each region of interest is shown on the screen
+
+        Output video is saved to a file with the same name as the input file with a suffix of "-out"
+
+OPTIONS
+-------
+-b : Execute in batch mode (no display, faster) when this switch is specified
+-n <numframes> : Execute for specified number of frames and then quit
+-s <numframes> : Skip specified number of frames in the beginning of the video
+-w <wait> : Wait for specified duration in miliseconds between displaying frames 
+            to slow down the output video (valid ONLY in non-batch mode)
+-v : Enable verbose logging (generates output for each frame)
+
+-c : specify the camera id
+-f : specify the video file to process 
+-m : specify the model file to be used
+-r : specify the region file to be used (only if camera id not provided)
+
+-l : specify the name of directory which contains live streaming files
+     in this mode, the latest files are automatically picked up for processing
+     the file name should start with time of recording in yyyy-mm-dd_hh-mm-ss format
+
+STATIONARY OBJECT DETECTION
+---------------------------
+Detect if an object is stationary based on following thresholds
+
+-d : number of pixels by which it must move between successive frames (default 2 pixels) 
+     to be deemed non-stationary
+-t : number of successive frames for which it should be stationary to be flagged 
+     (default 5 frames)
+

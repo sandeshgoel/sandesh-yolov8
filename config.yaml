@@ -1,0 +1,8 @@
+path: wonderful
+train: images
+val: images
+test:
+
+# classes
+nc: 1
+names: ['orange bag']
