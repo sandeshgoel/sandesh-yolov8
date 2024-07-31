@@ -1,0 +1,8 @@
+.DS_Store
+runs/*
+datasets/*
+data/*
+output/*
+models/*
+regions/*
+*.pt

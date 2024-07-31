@@ -61,3 +61,10 @@ Detect if an object is stationary based on following thresholds
 -t : number of successive frames for which it should be stationary to be flagged 
      (default 5 frames)
 
+
+
+[yolov8_training.py]
+
+- create config-xxx.yaml
+- annotate using cvat.ai and download annotations in YOLO 1.1 format
+- create ../datasets/xxx/images and ../datasets/xxx/labels directories
